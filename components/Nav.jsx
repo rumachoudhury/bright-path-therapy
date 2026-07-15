@@ -88,7 +88,53 @@ export default function Nav() {
     <header>
       <nav className="flex items-center justify-between px-8 py-5">
         {/* Logo */}
+        {/* <a href="/" className="flex items-center gap-2">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="16" cy="16" r="16" fill="#CC5A38" />
+            <path
+              d="M10 16C10 12.7 12.7 10 16 10C19.3 10 22 12.7 22 16"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          <span className="text-2xl font-serif font-bold text-ink">
+            Bright Path
+          </span>
+        </a>
         <a href="/" className="text-2xl font-serif font-bold text-ink">
+          Bright Path
+        </a> */}
+
+        <a
+          href="#top"
+          className="flex items-center gap-2.5 font-display font-semibold text-xl"
+        >
+          {" "}
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="none"
+            className="shrink-0"
+          >
+            <circle cx="15" cy="15" r="15" fill="#DCE7DA" />{" "}
+            <path
+              d="M8 15c0-3 1.5-5 2.5-5s1.5 4 2.5 4 1-6 2.5-6 1.5 8 2.5 8 1-3 2.5-3 1.5 2 2.5 2"
+              stroke="#CC5A38"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          </svg>
           Bright Path
         </a>
 
