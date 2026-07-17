@@ -1,5 +1,4 @@
 const Contact = require("../models/Contact");
-import Contact from "../../frontend/components/Contact";
 
 const createContact = async (req, res) => {
   // CREATE
@@ -21,7 +20,7 @@ const createContact = async (req, res) => {
 // READ - Get all contacts
 const getContacts = async (req, res) => {
   try {
-    const Contacts = await Contact.find();
+    const contacts = await Contact.find();
 
     res.status(200).json({
       data: contacts,
@@ -37,7 +36,7 @@ const getContacts = async (req, res) => {
 // UPDATE - Update one contact
 const updateContact = async (req, res) => {
   try {
-    const updateContact = await Contact.findByIdAndUpdate(
+    const updatedContact = await Contact.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
