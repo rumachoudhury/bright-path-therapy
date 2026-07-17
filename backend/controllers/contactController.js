@@ -43,7 +43,7 @@ const updateContact = async (req, res) => {
     );
 
     res.status(200).json({
-      message: "Contact update",
+      message: "Contact updated",
       data: updatedContact,
     });
   } catch (error) {
