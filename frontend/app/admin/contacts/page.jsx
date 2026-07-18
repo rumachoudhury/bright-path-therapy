@@ -14,33 +14,28 @@ export default function AdminContacts() {
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
-        "Are you shure you want to delete this contact"
-    )
+      "Are you shure you want to delete this contact",
+    );
 
-    if (!confirmDelete) return
+    if (!confirmDelete) return;
 
-try {
-    const res = await fetch(
-        `http://localhost:5000/api/contact/${id}`
+    try {
+      const res = await fetch(`http://localhost:5000/api/contact/${id}`, {
+        method: "DELETE",
+      });
 
-        {
-            method: "DELETE"
-        }
-    )
+      if (!res.ok) {
+        throw new Error("Fail to delete contact");
+      }
 
-    if (!res.ok) {
-        throw new Error ("Fail to delete contact")  
+      // Remove the deleted contact from the table
+      setContacts((prev) => prev.filter((contact) => contact._id !== id));
+
+      alert("Contact delete successfully");
+    } catch (error) {
+      alert(error.message);
     }
-
-
-        // Remove the deleted contact from the table
-        
-
-} catch (error) {
-    
-}
-
-  }
+  };
 
   return (
     <main className="p-10">
