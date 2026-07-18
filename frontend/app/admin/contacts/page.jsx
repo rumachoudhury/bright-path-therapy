@@ -12,6 +12,36 @@ export default function AdminContacts() {
       .catch((err) => console.error(err));
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+        "Are you shure you want to delete this contact"
+    )
+
+    if (!confirmDelete) return
+
+try {
+    const res = await fetch(
+        `http://localhost:5000/api/contact/${id}`
+
+        {
+            method: "DELETE"
+        }
+    )
+
+    if (!res.ok) {
+        throw new Error ("Fail to delete contact")  
+    }
+
+
+        // Remove the deleted contact from the table
+        
+
+} catch (error) {
+    
+}
+
+  }
+
   return (
     <main className="p-10">
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
