@@ -1,21 +1,16 @@
-"use cliect"
+"use client";
 
-import { useEffect, useState,  } from "react";
-
-
+import { useEffect, useState } from "react";
 
 export default function AdminContacts() {
+  const [contacts, setContacts] = useState([]);
 
-    const [contacts setContacts] = useState([])
-   
-
-    useEffect (() => {
-        fetch("http://localhost:5000/api/contact")
-        .then((res) => res.json())
-        .then((data) => setContacts(data.data))
-        .catch((err) => console.log(err))
-    }, [])
-
+  useEffect(() => {
+    fetch("http://localhost:5000/api/contact")
+      .then((res) => res.json())
+      .then((data) => setContacts(data.data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <main className="p-10">
@@ -32,12 +27,12 @@ export default function AdminContacts() {
         </thead>
 
         <tbody>
-          {AdminContacts.map((contact) => (
+          {contacts.map((contact) => (
             <tr key={contact._id}>
-              <td className="border p-3"></td>
-              <td className="border p-3"></td>
-              <td className="border p-3"></td>
-              <td className="border p-3"></td>
+              <td className="border p-3">{contact.name}</td>
+              <td className="border p-3">{contact.email}</td>
+              <td className="border p-3">{contact.phone}</td>
+              <td className="border p-3">{contact.message}</td>
             </tr>
           ))}
         </tbody>
