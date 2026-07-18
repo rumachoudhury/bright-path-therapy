@@ -23,6 +23,7 @@ export default function AdminContacts() {
             <th className="border p-3">Email</th>
             <th className="border p-3">Phone</th>
             <th className="border p-3">Message</th>
+            <th className="border p-3">Actions</th>
           </tr>
         </thead>
 
@@ -33,6 +34,16 @@ export default function AdminContacts() {
               <td className="border p-3">{contact.email}</td>
               <td className="border p-3">{contact.phone}</td>
               <td className="border p-3">{contact.message}</td>
+
+              <td className="border p-3">
+                <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2">
+                  Edit
+                </button>
+
+                <button className="bg-red-500 text-white px-3 py-1 rounded">
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
