@@ -40,7 +40,10 @@ export default function AdminContacts() {
                   Edit
                 </button>
 
-                <button className="bg-red-500 text-white px-3 py-1 rounded">
+                <button
+                  onClick={() => handleDelete(contact._id)}
+                  className="bg-red-500 text-white px-3 py-1 rounded"
+                >
                   Delete
                 </button>
               </td>
