@@ -12,6 +12,7 @@ export default function AdminContacts() {
       .catch((err) => console.error(err));
   }, []);
 
+  //    handleDelete
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you shure you want to delete this contact",
@@ -35,6 +36,11 @@ export default function AdminContacts() {
     } catch (error) {
       alert(error.message);
     }
+  };
+
+  //   handleEdit
+  const handleEdit = async (contact) => {
+    const newMessage = prompt("Update the message", contact.message);
   };
 
   return (
