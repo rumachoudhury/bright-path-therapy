@@ -47,8 +47,20 @@ export default function AdminContacts() {
     try {
       const res = await fetch(
         `http://localhost:5000/api/contact/${contact_id}`,
+
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: newMessage,
+          }),
+        }
       );
-    } catch (error) {}
+
+      const data = await res.json()
+    
   };
 
   return (
