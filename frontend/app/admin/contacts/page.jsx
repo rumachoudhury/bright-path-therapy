@@ -41,6 +41,14 @@ export default function AdminContacts() {
   //   handleEdit
   const handleEdit = async (contact) => {
     const newMessage = prompt("Update the message", contact.message);
+
+    if (!newMessage) return;
+
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/contact/${contact_id}`,
+      );
+    } catch (error) {}
   };
 
   return (
