@@ -98,7 +98,10 @@ export default function AdminContacts() {
               <td className="border p-3">{contact.message}</td>
 
               <td className="border p-3">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2">
+                <button
+                  onClick={() => handleEdit(contact)}
+                  className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
+                >
                   Edit
                 </button>
 
