@@ -94,6 +94,15 @@ export default function AdminContacts() {
     });
   };
 
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+
+    setEditForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <main className="p-10">
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
