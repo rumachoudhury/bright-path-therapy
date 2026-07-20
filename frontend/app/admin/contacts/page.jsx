@@ -5,6 +5,15 @@ import { useEffect, useState } from "react";
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
 
+  //It will Open a form or modal
+  const [editingContact, setEditingContact] = useState(null);
+  const [editForm, setEditForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
   useEffect(() => {
     fetch("http://localhost:5000/api/contact")
       .then((res) => res.json())
