@@ -94,6 +94,7 @@ export default function AdminContacts() {
     });
   };
 
+  //   Add a change handler
   const handleEditChange = (e) => {
     const { name, value } = e.target;
 
@@ -101,6 +102,40 @@ export default function AdminContacts() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  //   Add the Save function
+  const handleUpdate = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/contact/${editingContact._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editForm),
+        },
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+
+      setContacts((prev) =>
+        prev.map((contact) =>
+          contact._id === editingContact._id ? data.data : contact,
+        ),
+      );
+
+      setEditingContact(null);
+
+      alert("Contact updated!");
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
@@ -145,6 +180,60 @@ export default function AdminContacts() {
           ))}
         </tbody>
       </table>
+
+      {/* Add the modal */}
+      {editingContact && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg w-[500px]">
+            <h2 className="text-2xl font-bold mb-4">Edit Contact</h2>
+
+            <input
+              className="border p-2 w-full mb-3"
+              name="name"
+              value={editForm.name}
+              onChange={handleEditChange}
+            />
+
+            <input
+              className="border p-2 w-full mb-3"
+              name="email"
+              value={editForm.email}
+              onChange={handleEditChange}
+            />
+
+            <input
+              className="border p-2 w-full mb-3"
+              name="phone"
+              value={editForm.phone}
+              onChange={handleEditChange}
+            />
+
+            <textarea
+              className="border p-2 w-full mb-4"
+              rows="4"
+              name="message"
+              value={editForm.message}
+              onChange={handleEditChange}
+            />
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setEditingContact(null)}
+                className="bg-gray-300 px-4 py-2 rounded"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={handleUpdate}
+                className="bg-green-600 text-white px-4 py-2 rounded"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
