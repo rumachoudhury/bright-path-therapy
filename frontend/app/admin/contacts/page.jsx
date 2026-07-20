@@ -48,39 +48,50 @@ export default function AdminContacts() {
   };
 
   //   handleEdit
-  const handleEdit = async (contact) => {
-    const newMessage = prompt("Update the message:", contact.message);
+  //   const handleEdit = async (contact) => {
+  //     const newMessage = prompt("Update the message:", contact.message);
 
-    if (!newMessage) return;
+  //     if (!newMessage) return;
 
-    try {
-      const res = await fetch(
-        `http://localhost:5000/api/contact/${contact._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: newMessage,
-          }),
-        },
-      );
+  //     try {
+  //       const res = await fetch(
+  //         `http://localhost:5000/api/contact/${contact._id}`,
+  //         {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             message: newMessage,
+  //           }),
+  //         },
+  //       );
 
-      const data = await res.json();
+  //       const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.error || "Update failed");
-      }
+  //       if (!res.ok) {
+  //         throw new Error(data.error || "Update failed");
+  //       }
 
-      setContacts((prev) =>
-        prev.map((item) => (item._id === contact._id ? data.data : item)),
-      );
+  //       setContacts((prev) =>
+  //         prev.map((item) => (item._id === contact._id ? data.data : item)),
+  //       );
 
-      alert("Contact updated successfully!");
-    } catch (error) {
-      alert(error.message);
-    }
+  //       alert("Contact updated successfully!");
+  //     } catch (error) {
+  //       alert(error.message);
+  //     }
+  //   };
+
+  const handleEdit = (contact) => {
+    setEditingContact(contact);
+
+    setEditForm({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+      message: contact.message,
+    });
   };
 
   return (
