@@ -115,6 +115,14 @@ export default function AdminContacts() {
     <main className="p-10">
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
 
+      <input
+        type="text"
+        placeholder="Search contacts..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full md:w-80 border rounded-lg px-4 py-2 mb-6"
+      />
+
       <table className="w-full border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
