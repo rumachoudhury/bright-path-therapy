@@ -141,7 +141,11 @@ export default function AdminContacts() {
               <td className="border p-3">{contact.email}</td>
               <td className="border p-3">{contact.phone}</td>
               <td className="border p-3">{contact.message}</td>
+              <th className="border p-3">Submitted</th>
 
+              <td className="border p-3">
+                {new Date(contact.createdAt).toLocaleDateString()}
+              </td>
               <td className="border p-3">
                 <button
                   onClick={() => handleEdit(contact)}
