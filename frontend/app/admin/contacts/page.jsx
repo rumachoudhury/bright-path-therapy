@@ -14,6 +14,8 @@ export default function AdminContacts() {
     message: "",
   });
 
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     fetch("http://localhost:5000/api/contact")
       .then((res) => res.json())
@@ -41,7 +43,7 @@ export default function AdminContacts() {
       // Remove the deleted contact from the table
       setContacts((prev) => prev.filter((contact) => contact._id !== id));
 
-      alert("Contact delete successfully");
+      alert("Contact deleted successfully!");
     } catch (error) {
       alert(error.message);
     }
@@ -102,6 +104,13 @@ export default function AdminContacts() {
     }
   };
 
+  // Create filtered contacts
+  const filteredContacts = contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(search.toLowerCase()) ||
+      contact.email.toLowerCase().includes(search.toLowerCase()) ||
+      contact.message.toLowerCase().includes(search.toLowerCase()),
+  );
   return (
     <main className="p-10">
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
