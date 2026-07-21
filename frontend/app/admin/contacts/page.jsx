@@ -135,7 +135,7 @@ export default function AdminContacts() {
         </thead>
 
         <tbody>
-          {contacts.map((contact) => (
+          {filteredContacts.map((contact) => (
             <tr key={contact._id}>
               <td className="border p-3">{contact.name}</td>
               <td className="border p-3">{contact.email}</td>
