@@ -180,7 +180,7 @@ export default function AdminContacts() {
               <th className="border p-3">Submitted</th>
 
               <td className="border p-3">
-                {new Date(contact.createdAt).toLocaleDateString()}
+                {new Date(contact.createdAt).toLocaleString()}
               </td>
               <td className="border p-3">
                 <button
