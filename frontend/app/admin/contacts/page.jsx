@@ -158,20 +158,21 @@ export default function AdminContacts() {
 
       <table className="w-full border border-gray-300">
         <thead>
-          <tr className="bg-gray-100">
-            <th className="border p-3">Name</th>
-            <th className="border p-3">Email</th>
-            <th className="border p-3">Phone</th>
-            <th className="border p-3">Message</th>
-            <th>Submitted</th>
-            <td>Date</td>
-            <td>Buttons</td>
-          </tr>
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border p-3">Name</th>
+              <th className="border p-3">Email</th>
+              <th className="border p-3">Phone</th>
+              <th className="border p-3">Message</th>
+              <th className="border p-3">Submitted</th>
+              <th className="border p-3">Actions</th>
+            </tr>
+          </thead>
         </thead>
 
         <tbody>
           {currentContacts.map((contact) => (
-            <tr key={contact._id}>
+            <tr key={contact._id} className="hover:bg-gray-50 transition">
               <td className="border p-3">{contact.name}</td>
               <td className="border p-3">{contact.email}</td>
               <td className="border p-3">{contact.phone}</td>
