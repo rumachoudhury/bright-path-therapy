@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+// import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import Pagination from "../Pagination/page";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
@@ -13,8 +16,26 @@ export default function AdminContacts() {
     phone: "",
     message: "",
   });
-
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Filter contacts
+  const filteredContacts = contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(search.toLowerCase()) ||
+      contact.email.toLowerCase().includes(search.toLowerCase()) ||
+      contact.message.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  // Pagination (PUT HERE)
+  const contactsPerPage = 10;
+
+  const indexOfLast = currentPage * contactsPerPage;
+  const indexOfFirst = indexOfLast - contactsPerPage;
+
+  const currentContacts = filteredContacts.slice(indexOfFirst, indexOfLast);
+
+  const totalPages = Math.ceil(filteredContacts.length / contactsPerPage);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/contact")
@@ -43,9 +64,11 @@ export default function AdminContacts() {
       // Remove the deleted contact from the table
       setContacts((prev) => prev.filter((contact) => contact._id !== id));
 
-      alert("Contact deleted successfully!");
+      //   alert("Contact deleted successfully!");
+      toast.success("Contact deleted!");
     } catch (error) {
-      alert(error.message);
+      //   alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -98,28 +121,35 @@ export default function AdminContacts() {
 
       setEditingContact(null);
 
-      alert("Contact updated!");
-    } catch (err) {
-      alert(err.message);
+      //   alert("Contact updated!");
+      toast.success("Contact updated!");
+    } catch (error) {
+      //   alert(err.message);
+      toast.error(err.message);
     }
   };
 
   // Create filtered contacts
-  const filteredContacts = contacts.filter(
-    (contact) =>
-      contact.name.toLowerCase().includes(search.toLowerCase()) ||
-      contact.email.toLowerCase().includes(search.toLowerCase()) ||
-      contact.message.toLowerCase().includes(search.toLowerCase()),
-  );
+  //   const filteredContacts = contacts.filter(
+  //     (contact) =>
+  //       contact.name.toLowerCase().includes(search.toLowerCase()) ||
+  //       contact.email.toLowerCase().includes(search.toLowerCase()) ||
+  //       contact.message.toLowerCase().includes(search.toLowerCase()),
+  //   );
   return (
     <main className="p-10">
+      <Toaster position="top-right" />
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
 
       <input
         type="text"
         placeholder="Search contacts..."
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        // onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setCurrentPage(1);
+        }}
         className="w-full md:w-80 border rounded-lg px-4 py-2 mb-6"
       />
 
@@ -135,7 +165,7 @@ export default function AdminContacts() {
         </thead>
 
         <tbody>
-          {filteredContacts.map((contact) => (
+          {currentContacts.map((contact) => (
             <tr key={contact._id}>
               <td className="border p-3">{contact.name}</td>
               <td className="border p-3">{contact.email}</td>
@@ -165,6 +195,12 @@ export default function AdminContacts() {
           ))}
         </tbody>
       </table>
+
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
 
       {/* Add the modal */}
       {editingContact && (
