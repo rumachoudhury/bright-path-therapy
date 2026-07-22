@@ -161,6 +161,8 @@ export default function AdminContacts() {
             <th className="border p-3">Phone</th>
             <th className="border p-3">Message</th>
             <th className="border p-3">Actions</th>
+            <th className="border p-3">Submitted</th>
+            <th className="border p-3">Date</th>
           </tr>
         </thead>
 
