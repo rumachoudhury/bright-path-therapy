@@ -28,7 +28,7 @@ export default function AdminContacts() {
   );
 
   // Pagination (PUT HERE)
-  const contactsPerPage = 10;
+  const contactsPerPage = 2;
 
   const indexOfLast = currentPage * contactsPerPage;
   const indexOfFirst = indexOfLast - contactsPerPage;
@@ -62,7 +62,7 @@ export default function AdminContacts() {
       }
 
       // Remove the deleted contact from the table
-      setContacts((prev) => prev.filter((contact) => contact._id !== id));
+      //   setContacts((prev) => prev.filter((contact) => contact._id !== id));
 
       //   alert("Contact deleted successfully!");
       toast.success("Contact deleted!");
