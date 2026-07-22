@@ -65,6 +65,9 @@ export default function AdminContacts() {
       //   setContacts((prev) => prev.filter((contact) => contact._id !== id));
 
       //   alert("Contact deleted successfully!");
+      //   toast.success("Contact deleted!");
+      setContacts((prev) => prev.filter((contact) => contact._id !== id));
+
       toast.success("Contact deleted!");
     } catch (error) {
       //   alert(error.message);
@@ -160,9 +163,9 @@ export default function AdminContacts() {
             <th className="border p-3">Email</th>
             <th className="border p-3">Phone</th>
             <th className="border p-3">Message</th>
-            <th className="border p-3">Actions</th>
-            <th className="border p-3">Submitted</th>
-            <th className="border p-3">Date</th>
+            <th>Submitted</th>
+            <td>Date</td>
+            <td>Buttons</td>
           </tr>
         </thead>
 
