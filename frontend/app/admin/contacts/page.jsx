@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import { Toaster } from "react-hot-toast";
+
 import toast, { Toaster } from "react-hot-toast";
 import Pagination from "../Pagination/page";
 
@@ -201,20 +201,51 @@ export default function AdminContacts() {
           ))}
         </tbody>
       </table> */}
-
-      <table className="w-full border border-gray-300">
-        <thead>
-          <tr className="bg-gray-100">
+      <table className="w-full border border-gray-300 rounded-lg overflow-hidden">
+        <thead className="bg-gray-100">
+          <tr>
             <th className="border p-3">Name</th>
             <th className="border p-3">Email</th>
             <th className="border p-3">Phone</th>
             <th className="border p-3">Message</th>
-            <td className="border p-3">
-              {new Date(contacts.createdAt).toLocaleString()}
-            </td>
+            <th className="border p-3">Submitted</th>
             <th className="border p-3">Actions</th>
           </tr>
         </thead>
+
+        <tbody>
+          {currentContacts.map((contact) => (
+            <tr key={contact._id} className="hover:bg-gray-50 transition">
+              <td className="border p-3">{contact.name}</td>
+
+              <td className="border p-3">{contact.email}</td>
+
+              <td className="border p-3">{contact.phone || "-"}</td>
+
+              <td className="border p-3">{contact.message}</td>
+
+              <td className="border p-3">
+                {new Date(contact.createdAt).toLocaleString()}
+              </td>
+
+              <td className="border p-3">
+                <button
+                  onClick={() => handleEdit(contact)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(contact._id)}
+                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <Pagination
         currentPage={currentPage}
