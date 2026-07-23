@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Pagination from "../Pagination/page";
 
 export default function AdminContacts() {
@@ -141,7 +140,6 @@ export default function AdminContacts() {
   //   );
   return (
     <main className="p-10">
-      <Toaster position="top-right" />
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
 
       <input
