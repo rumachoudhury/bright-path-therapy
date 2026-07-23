@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Pagination from "../Pagination/page";
+import Loading from "@/components/Loading";
+import Loading from "../components/Loading";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
@@ -17,6 +19,7 @@ export default function AdminContacts() {
   });
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   // Filter contacts
   const filteredContacts = contacts.filter(
@@ -39,8 +42,14 @@ export default function AdminContacts() {
   useEffect(() => {
     fetch("http://localhost:5000/api/contact")
       .then((res) => res.json())
-      .then((data) => setContacts(data.data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        setContacts(data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, []);
 
   //    handleDelete
