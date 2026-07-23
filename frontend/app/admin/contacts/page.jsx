@@ -156,7 +156,7 @@ export default function AdminContacts() {
         className="w-full md:w-80 border rounded-lg px-4 py-2 mb-6"
       />
 
-      <table className="w-full border border-gray-300">
+      {/* <table className="w-full border border-gray-300">
         <thead>
           <thead>
             <tr className="bg-gray-100">
@@ -200,8 +200,20 @@ export default function AdminContacts() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
 
+      <table className="w-full border border-gray-300">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="border p-3">Name</th>
+            <th className="border p-3">Email</th>
+            <th className="border p-3">Phone</th>
+            <th className="border p-3">Message</th>
+            <th className="border p-3">Submitted</th>
+            <th className="border p-3">Actions</th>
+          </tr>
+        </thead>
+      </table>
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
