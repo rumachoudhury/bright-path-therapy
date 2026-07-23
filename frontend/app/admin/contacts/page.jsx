@@ -163,10 +163,23 @@ export default function AdminContacts() {
         className="w-full md:w-80 border rounded-lg px-4 py-2 mb-6"
       />
 
-      {/* <table className="w-full border border-gray-300">
-        <thead>
-          <thead>
-            <tr className="bg-gray-100">
+      {/* Add loading UI */}
+      {loading ? (
+        <Loading />
+      ) : contacts.length === 0 ? (
+        <div className="text-center py-20">
+          <h2 className="text-xl font-semibold text-gray-700">
+            No contacts found
+          </h2>
+
+          <p className="text-gray-500 mt-2">
+            New contact messages will appear here.
+          </p>
+        </div>
+      ) : (
+        <table className="w-full border border-gray-300 rounded-lg overflow-hidden">
+          <thead className="bg-gray-100">
+            <tr>
               <th className="border p-3">Name</th>
               <th className="border p-3">Email</th>
               <th className="border p-3">Phone</th>
@@ -175,40 +188,44 @@ export default function AdminContacts() {
               <th className="border p-3">Actions</th>
             </tr>
           </thead>
-        </thead>
 
-        <tbody>
-          {currentContacts.map((contact) => (
-            <tr key={contact._id} className="hover:bg-gray-50 transition">
-              <td className="border p-3">{contact.name}</td>
-              <td className="border p-3">{contact.email}</td>
-              <td className="border p-3">{contact.phone}</td>
-              <td className="border p-3">{contact.message}</td>
-              <th className="border p-3">Submitted</th>
+          <tbody>
+            {currentContacts.map((contact) => (
+              <tr key={contact._id} className="hover:bg-gray-50 transition">
+                <td className="border p-3">{contact.name}</td>
 
-              <td className="border p-3">
-                {new Date(contact.createdAt).toLocaleString()}
-              </td>
-              <td className="border p-3">
-                <button
-                  onClick={() => handleEdit(contact)}
-                  className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
-                >
-                  Edit
-                </button>
+                <td className="border p-3">{contact.email}</td>
 
-                <button
-                  onClick={() => handleDelete(contact._id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-      <table className="w-full border border-gray-300 rounded-lg overflow-hidden">
+                <td className="border p-3">{contact.phone || "-"}</td>
+
+                <td className="border p-3">{contact.message}</td>
+
+                <td className="border p-3">
+                  {new Date(contact.createdAt).toLocaleString()}
+                </td>
+
+                <td className="border p-3">
+                  <button
+                    onClick={() => handleEdit(contact)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(contact._id)}
+                    className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {/* <table className="w-full border border-gray-300 rounded-lg overflow-hidden">
         <thead className="bg-gray-100">
           <tr>
             <th className="border p-3">Name</th>
@@ -253,7 +270,7 @@ export default function AdminContacts() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
