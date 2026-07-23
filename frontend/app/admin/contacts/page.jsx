@@ -209,7 +209,9 @@ export default function AdminContacts() {
             <th className="border p-3">Email</th>
             <th className="border p-3">Phone</th>
             <th className="border p-3">Message</th>
-            <th className="border p-3">Submitted</th>
+            <td className="border p-3">
+              {new Date(contacts.createdAt).toLocaleString()}
+            </td>
             <th className="border p-3">Actions</th>
           </tr>
         </thead>
