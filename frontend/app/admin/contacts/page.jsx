@@ -6,6 +6,7 @@ import Pagination from "../Pagination/page";
 import Loading from "@/components/Loading";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
@@ -163,7 +164,10 @@ export default function AdminContacts() {
   return (
     <main className="p-10">
       <Button asChild className="btn btn-primary w-fit">
-        <Link href="/">Back to Home</Link>
+        <Link href="/">
+          {" "}
+          <ArrowLeft size={18} /> Back to Home
+        </Link>
       </Button>
 
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
