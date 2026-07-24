@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Pagination from "../Pagination/page";
 import Loading from "@/components/Loading";
-import Loading from "../components/Loading";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
@@ -161,6 +162,10 @@ export default function AdminContacts() {
   //   );
   return (
     <main className="p-10">
+      <Button asChild className="btn btn-primary w-fit">
+        <Link href="/">Back to Home</Link>
+      </Button>
+
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
 
       <input
