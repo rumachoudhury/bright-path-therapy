@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
@@ -12,6 +14,8 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+
+  const pathname = usePathname();
 
   return (
     <header>
@@ -44,7 +48,7 @@ export default function Nav() {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-9 items-center text-[15px] font-medium">
+        <div className="hidden md:flex gap-9 items-center text-[15px] font-medium border p-4 rounded-full">
           {links.map((link) => (
             <a
               key={link.href}
