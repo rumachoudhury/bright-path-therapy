@@ -154,19 +154,12 @@ export default function AdminContacts() {
     }
   };
 
-  // Create filtered contacts
-  //   const filteredContacts = contacts.filter(
-  //     (contact) =>
-  //       contact.name.toLowerCase().includes(search.toLowerCase()) ||
-  //       contact.email.toLowerCase().includes(search.toLowerCase()) ||
-  //       contact.message.toLowerCase().includes(search.toLowerCase()),
-  //   );
   return (
     <main className="p-10">
       <Button asChild className="btn btn-primary w-fit">
-        <Link href="/">
-          {" "}
-          <ArrowLeft size={18} /> Back to Home
+        <Link href="/" className="flex items-center gap-3 animate-pulse">
+          <ArrowLeft size={18} />
+          Back to Home
         </Link>
       </Button>
 
