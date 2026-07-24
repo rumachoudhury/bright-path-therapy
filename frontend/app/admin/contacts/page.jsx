@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
+  const [sortOrder, setSortOrder] = useState("newest");
 
   //It will Open a form or modal
   const [editingContact, setEditingContact] = useState(null);
@@ -22,13 +23,29 @@ export default function AdminContacts() {
   const [loading, setLoading] = useState(true);
 
   // Filter contacts
-  const filteredContacts = contacts.filter(
-    (contact) =>
-      contact.name.toLowerCase().includes(search.toLowerCase()) ||
-      contact.email.toLowerCase().includes(search.toLowerCase()) ||
-      contact.message.toLowerCase().includes(search.toLowerCase()),
-  );
+  // const filteredContacts = contacts.filter(
+  //   (contact) =>
+  //     contact.name.toLowerCase().includes(search.toLowerCase()) ||
+  //     contact.email.toLowerCase().includes(search.toLowerCase()) ||
+  //     contact.message.toLowerCase().includes(search.toLowerCase()),
+  // );
+  const filteredContacts = contacts
+    .filter(
+      (contact) =>
+        contact.name.toLowerCase().includes(search.toLowerCase()) ||
+        contact.email.toLowerCase().includes(search.toLowerCase()) ||
+        contact.message.toLowerCase().includes(search.toLowerCase()),
+    )
+    .sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
 
+      if (sortOrder === "newest") {
+        return dateB - dateA;
+      }
+
+      return dateA - dateB;
+    });
   // Pagination (PUT HERE)
   const contactsPerPage = 2;
 
@@ -69,11 +86,6 @@ export default function AdminContacts() {
         throw new Error("Fail to delete contact");
       }
 
-      // Remove the deleted contact from the table
-      //   setContacts((prev) => prev.filter((contact) => contact._id !== id));
-
-      //   alert("Contact deleted successfully!");
-      //   toast.success("Contact deleted!");
       setContacts((prev) => prev.filter((contact) => contact._id !== id));
 
       toast.success("Contact deleted!");
@@ -163,6 +175,19 @@ export default function AdminContacts() {
         className="w-full md:w-80 border rounded-lg px-4 py-2 mb-6"
       />
 
+      <select
+        value={sortOrder}
+        onChange={(e) => {
+          setSortOrder(e.target.value);
+          setCurrentPage(1);
+        }}
+        className="border rounded-lg px-4 py-2 mb-6 ml-3"
+      >
+        <option value="newest">Newest First</option>
+
+        <option value="oldest">Oldest First</option>
+      </select>
+
       {/* Add loading UI */}
       {loading ? (
         <Loading />
@@ -177,100 +202,56 @@ export default function AdminContacts() {
           </p>
         </div>
       ) : (
-        <table className="w-full border border-gray-300 rounded-lg overflow-hidden">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="border p-3">Name</th>
-              <th className="border p-3">Email</th>
-              <th className="border p-3">Phone</th>
-              <th className="border p-3">Message</th>
-              <th className="border p-3">Submitted</th>
-              <th className="border p-3">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {currentContacts.map((contact) => (
-              <tr key={contact._id} className="hover:bg-gray-50 transition">
-                <td className="border p-3">{contact.name}</td>
-
-                <td className="border p-3">{contact.email}</td>
-
-                <td className="border p-3">{contact.phone || "-"}</td>
-
-                <td className="border p-3">{contact.message}</td>
-
-                <td className="border p-3">
-                  {new Date(contact.createdAt).toLocaleString()}
-                </td>
-
-                <td className="border p-3">
-                  <button
-                    onClick={() => handleEdit(contact)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={() => handleDelete(contact._id)}
-                    className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="w-full overflow-x-auto rounded-lg border border-gray-200">
+          <table className="min-w-[900px] w-full border-collapse">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border p-3 text-left">Name</th>
+                <th className="border p-3 text-left">Email</th>
+                <th className="border p-3 text-left">Phone</th>
+                <th className="border p-3 text-left">Message</th>
+                <th className="border p-3 text-left">Submitted</th>
+                <th className="border p-3 text-left">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {currentContacts.map((contact) => (
+                <tr key={contact._id} className="hover:bg-gray-50 transition">
+                  <td className="border p-3">{contact.name}</td>
+
+                  <td className="border p-3 break-all">{contact.email}</td>
+
+                  <td className="border p-3">{contact.phone || "-"}</td>
+
+                  <td className="border p-3 max-w-xs">{contact.message}</td>
+
+                  <td className="border p-3 whitespace-nowrap">
+                    {new Date(contact.createdAt).toLocaleDateString()}
+                  </td>
+
+                  <td className="border p-3 whitespace-nowrap">
+                    <button
+                      onClick={() => handleEdit(contact)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      onClick={() => handleDelete(contact._id)}
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
-      {/* <table className="w-full border border-gray-300 rounded-lg overflow-hidden">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="border p-3">Name</th>
-            <th className="border p-3">Email</th>
-            <th className="border p-3">Phone</th>
-            <th className="border p-3">Message</th>
-            <th className="border p-3">Submitted</th>
-            <th className="border p-3">Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {currentContacts.map((contact) => (
-            <tr key={contact._id} className="hover:bg-gray-50 transition">
-              <td className="border p-3">{contact.name}</td>
-
-              <td className="border p-3">{contact.email}</td>
-
-              <td className="border p-3">{contact.phone || "-"}</td>
-
-              <td className="border p-3">{contact.message}</td>
-
-              <td className="border p-3">
-                {new Date(contact.createdAt).toLocaleString()}
-              </td>
-
-              <td className="border p-3">
-                <button
-                  onClick={() => handleEdit(contact)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
-                >
-                  Edit
-                </button>
-
-                <button
-                  onClick={() => handleDelete(contact._id)}
-                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
