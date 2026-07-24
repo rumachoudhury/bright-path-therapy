@@ -7,6 +7,7 @@ import Area from "@/components/Area";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { services } from "@/lib/services";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Signs />
       <About />
       <Services services={services} />
+      <FAQ />
       <Area />
       <Contact />
       <Footer />
