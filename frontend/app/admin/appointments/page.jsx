@@ -31,8 +31,69 @@ function AppointmentsPage() {
                 <th className="border p-3 text-left">Date</th>
                 <th className="border p-3 text-left">Time</th>
                 <th className="border p-3 text-left">Status</th>
+                <th className="border p-3 text-left">Actions</th>
               </tr>
             </thead>
+
+            {/* <tbody>
+              {appoinments.map((appoinment) => {
+                <tr key={appoinment._id}>
+                  <td className="border p-3">{appoinment.patientName}</td>
+                  <td className="border p-3">{appoinment.email}</td>
+                  <td className="border p-3">{appoinment.date}</td>
+                  <td className="border p-3">{appoinment.time}</td>
+                  <td className="border p-3">{appoinment.status}</td>
+
+                  <td className="border p-3">
+                    <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+                      Pending
+                    </span>
+                  </td>
+
+                  <td className="border p-3">
+                    <button className="bg-green-600 text-white px-3 py-1 rounded mr-2">
+                      Approve
+                    </button>
+
+                    <button className="bg-red-600 text-white px-3 py-1 rounded">
+                      Cancel
+                    </button>
+                  </td>
+                </tr>;
+              })}
+            </tbody> */}
+
+            <tbody>
+              {appointments.map((appointment) => (
+                <tr key={appointment._id}>
+                  <td className="border p-3">{appointment.patientName}</td>
+
+                  <td className="border p-3">{appointment.email}</td>
+
+                  <td className="border p-3">{appointment.date}</td>
+
+                  <td className="border p-3">{appointment.time}</td>
+
+                  <td className="border p-3">{appointment.status}</td>
+
+                  <td className="border p-3">
+                    <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+                      Pending
+                    </span>
+                  </td>
+
+                  <td className="border p-3">
+                    <button className="bg-green-600 text-white px-3 py-1 rounded mr-2">
+                      Approve
+                    </button>
+
+                    <button className="bg-red-600 text-white px-3 py-1 rounded">
+                      Cancel
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       )}
