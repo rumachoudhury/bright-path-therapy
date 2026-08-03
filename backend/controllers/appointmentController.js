@@ -34,7 +34,38 @@ const getAppointments = async (req, res) => {
   }
 };
 
+// UPDATE - Update one appointment
+const updateAppointment = async (req, res) => {
+  try {
+    const appointment = await Appointment.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+
+    if (!appointment) {
+      return res.status(404).json({
+        error: "Appointment not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Appointment updated successfully",
+      data: appointment,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to update appointment",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createAppointment,
   getAppointments,
+  updateAppointment,
 };
