@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const appoinmentSchema = new mongoose.Schema(
+const appointmentSchema = new mongoose.Schema(
   {
     patientName: {
       type: String,
@@ -48,4 +48,4 @@ const appoinmentSchema = new mongoose.Schema(
   },
 );
 
-module.export = mongoose.model("Appoinment", appoinmentSchema);
+module.export = mongoose.model("Appointment", appointmentSchema);
