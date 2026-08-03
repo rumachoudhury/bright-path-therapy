@@ -17,6 +17,24 @@ const createAppointment = async (req, res) => {
   }
 };
 
+// READ - Get all appointments
+const getAppointments = async (req, res) => {
+  try {
+    const appointments = await Appointment.find().sort({ createdAt: -1 });
+
+    res.status(200).json({
+      message: "Appointments fetched successfully",
+      data: appointments,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch appointments",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createAppointment,
+  getAppointments,
 };
