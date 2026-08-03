@@ -26,11 +26,15 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex gap-4">
-            <Link href="#contact" className="btn btn-primary">
+            {/* <Link href="#contact" className="btn btn-primary">
+              Book a free consultation
+            </Link> */}
+
+            <Link className="btn btn-primary" href="/appointments">
               Book a free consultation
             </Link>
 
-            <Link href="#services" className="btn btn-primary">
+            <Link href="#services" className="btn btn-ghost">
               Explore our services
             </Link>
           </div>

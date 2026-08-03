@@ -156,7 +156,8 @@ export default function AdminContacts() {
 
   return (
     <main className="p-10">
-      <Button asChild className="btn btn-primary w-fit">
+      {/* <Button asChild className="btn btn-primary w-fit"> */}
+      <Button asChild className="mb-6">
         <Link href="/" className="flex items-center gap-3 animate-pulse">
           <ArrowLeft size={18} />
           Back to Home

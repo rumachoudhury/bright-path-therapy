@@ -22,7 +22,7 @@ export default function Nav() {
       <nav className="flex items-center justify-between px-8 py-5">
         {/* Logo */}
 
-        <a
+        <Link
           href="#top"
           className="flex items-center gap-2.5 font-display font-semibold text-xl"
         >
@@ -45,29 +45,29 @@ export default function Nav() {
             />
           </svg>
           Bright Path
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-9 items-center text-[15px] font-medium border p-4 rounded-full">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-ink-soft hover:text-coral-deep transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-4">
-          <a
+          <Link
             href="#contact"
             className="btn btn-primary !px-[22px] !py-[11px] !text-sm hidden sm:inline-flex"
           >
             Schedule a Visit
-          </a>
+          </Link>
 
           <button
             className="md:hidden p-1.5"
@@ -85,30 +85,30 @@ export default function Nav() {
       {open && (
         <div className="md:hidden flex flex-col gap-5 px-8 py-6 border-t border-line bg-paper">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className="text-ink-soft text-[15px] font-medium"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
 
-          <a
+          <Link
             href="#contact"
             onClick={() => setOpen(false)}
             className="btn btn-primary w-fit"
           >
             Schedule a Visit
-          </a>
-
-          <a
+          </Link>
+          <Link
             href="/admin/contacts"
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            onClick={() => setOpen(false)}
+            className="btn btn-primary w-fit"
           >
             Open Admin
-          </a>
+          </Link>
         </div>
       )}
     </header>
