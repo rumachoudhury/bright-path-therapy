@@ -155,7 +155,8 @@ export default function AdminContacts() {
   };
 
   return (
-    <main className="p-10">
+    // <main className="p-10">
+    <main className="p-4 sm:p-6 lg:p-10">
       {/* <Button asChild className="btn btn-primary w-fit"> */}
       <Button asChild className="mb-6">
         <Link href="/" className="flex items-center gap-3 animate-pulse">
@@ -166,7 +167,7 @@ export default function AdminContacts() {
 
       <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
 
-      <input
+      {/* <input
         type="text"
         placeholder="Search contacts..."
         value={search}
@@ -176,8 +177,8 @@ export default function AdminContacts() {
           setCurrentPage(1);
         }}
         className="w-full md:w-80 border rounded-lg px-4 py-2 mb-6"
-      />
-
+      /> */}
+      {/* 
       <select
         value={sortOrder}
         onChange={(e) => {
@@ -189,7 +190,32 @@ export default function AdminContacts() {
         <option value="newest">Newest First</option>
 
         <option value="oldest">Oldest First</option>
-      </select>
+      </select> */}
+
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <input
+          type="text"
+          placeholder="Search contacts..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="w-full sm:flex-1 border rounded-lg px-4 py-2"
+        />
+
+        <select
+          value={sortOrder}
+          onChange={(e) => {
+            setSortOrder(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="w-full sm:w-52 border rounded-lg px-4 py-2"
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
 
       {/* Add loading UI */}
       {loading ? (
@@ -205,8 +231,10 @@ export default function AdminContacts() {
           </p>
         </div>
       ) : (
-        <div className="w-full overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-[900px] w-full border-collapse">
+        // <div className="w-full overflow-x-auto rounded-lg border border-gray-200">
+        <div className="hidden md:block overflow-x-auto rounded-lg border">
+          {/* <table className="min-w-[900px] w-full border-collapse"> */}
+          <table className="min-w-[950px] w-full border-collapse text-sm">
             <thead>
               <tr className="bg-gray-100">
                 <th className="border p-3 text-left">Name</th>
@@ -227,7 +255,10 @@ export default function AdminContacts() {
 
                   <td className="border p-3">{contact.phone || "-"}</td>
 
-                  <td className="border p-3 max-w-xs">{contact.message}</td>
+                  {/* <td className="border p-3 max-w-xs">{contact.message}</td> */}
+                  <td className="border p-3 max-w-xs break-words">
+                    {contact.message}
+                  </td>
 
                   <td className="border p-3 whitespace-nowrap">
                     {new Date(contact.createdAt).toLocaleDateString()}
@@ -314,6 +345,54 @@ export default function AdminContacts() {
           </div>
         </div>
       )}
+
+      <div className="md:hidden space-y-4">
+        {currentContacts.map((contact) => (
+          <div
+            key={contact._id}
+            className="border rounded-lg p-4 shadow-sm bg-white"
+          >
+            <p>
+              <strong>Name:</strong> {contact.name}
+            </p>
+
+            <p className="break-all">
+              <strong>Email:</strong> {contact.email}
+            </p>
+
+            <p>
+              <strong>Phone:</strong> {contact.phone || "-"}
+            </p>
+
+            <p className="mt-2">
+              <strong>Message:</strong>
+            </p>
+
+            <p className="text-gray-600">{contact.message}</p>
+
+            <p className="mt-2">
+              <strong>Submitted:</strong>{" "}
+              {new Date(contact.createdAt).toLocaleDateString()}
+            </p>
+
+            <div className="flex flex-col gap-2 mt-4">
+              <button
+                onClick={() => handleEdit(contact)}
+                className="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => handleDelete(contact._id)}
+                className="bg-red-600 hover:bg-red-700 text-white py-2 rounded"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
