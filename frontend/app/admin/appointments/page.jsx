@@ -49,38 +49,33 @@ function AppointmentsPage() {
     }
   };
 
-const handleDelete = async (id) => {
-  const confirmDelete = window.confirm(
-    "Are you sure you want to delete this appointment?"
-  );
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this appointment?",
+    );
 
-  if (!confirmDelete) return;
+    if (!confirmDelete) return;
 
-  try {
-    const res = await fetch(
-      `http://localhost:5000/api/appointments/${id}`,
-      {
+    try {
+      const res = await fetch(`http://localhost:5000/api/appointments/${id}`, {
         method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error);
       }
-    );
 
-    const data = await res.json();
+      setAppointments((prev) =>
+        prev.filter((appointment) => appointment._id !== id),
+      );
 
-    if (!res.ok) {
-      throw new Error(data.error);
+      toast.success("Appointment deleted!");
+    } catch (error) {
+      toast.error(error.message);
     }
-
-    setAppointments((prev) =>
-      prev.filter((appointment) => appointment._id !== id)
-    );
-
-    toast.success("Appointment deleted!");
-
-  } catch (error) {
-    toast.error(error.message);
-  }
-};
-
+  };
 
   return (
     <main className="p-10">
@@ -128,7 +123,7 @@ const handleDelete = async (id) => {
 
                   <td className="border p-3">{appointment.time}</td>
 
-                  <td className="border p-3">{appointment.status}</td>
+                  {/* <td className="border p-3">{appointment.status}</td> */}
 
                   <td className="border p-3">
                     <span
@@ -145,28 +140,32 @@ const handleDelete = async (id) => {
                   </td>
 
                   <td className="border p-3">
-                    <button
-                      onClick={() =>
-                        handleStatusUpdate(appointment._id, "Approved")
-                      }
-                      className="bg-green-600 text-white px-3 py-1 rounded mr-2"
-                    >
-                      Approve
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() =>
+                          handleStatusUpdate(appointment._id, "Approved")
+                        }
+                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                      >
+                        Approve
+                      </button>
 
-                    <button
-                      onClick={() =>
-                        handleStatusUpdate(appointment._id, "Cancelled")
-                      }
-                      className="bg-red-600 text-white px-3 py-1 rounded"
-                    >
-                      Cancel
-                    </button>
+                      <button
+                        onClick={() =>
+                          handleStatusUpdate(appointment._id, "Cancelled")
+                        }
+                        className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded"
+                      >
+                        Cancel
+                      </button>
 
-                   <button onClick={()handleDelete(appointment._id)} 
-                   className="">
-                    Delete
-                   </button>
+                      <button
+                        onClick={() => handleDelete(appointment._id)}
+                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

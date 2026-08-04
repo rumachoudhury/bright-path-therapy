@@ -9,7 +9,7 @@ const links = [
   { href: "#services", label: "Our Services" },
   { href: "#area", label: "Where We Serve" },
   { href: "#contact", label: "Get In Touch" },
-  { href: "/admin/contacts", label: "Open Admin" },
+  { href: "/admin", label: "Open Admin" },
 ];
 
 export default function Nav() {
@@ -102,8 +102,15 @@ export default function Nav() {
           >
             Schedule a Visit
           </Link>
+
+          {/* <Link
+            href="/admin"
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+          >
+            Admin
+          </Link> */}
           <Link
-            href="/admin/contacts"
+            href="/admin"
             onClick={() => setOpen(false)}
             className="btn btn-primary w-fit"
           >

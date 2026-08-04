@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Pagination from "../Pagination/page";
+import Pagination from "@/components/Pagination";
 import Loading from "@/components/Loading";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
