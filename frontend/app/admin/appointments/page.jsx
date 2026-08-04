@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 
 function AppointmentsPage() {
   const [appointments, setAppointments] = useState([]);
@@ -41,8 +42,10 @@ function AppointmentsPage() {
           appointment._id === id ? data.data : appointment,
         ),
       );
+
+      toast.success(`Appointment ${status.toLowerCase()}`);
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -54,13 +57,6 @@ function AppointmentsPage() {
           Back to Home
         </Link>
       </Button>
-      {/* <Button asChild className="mb-6">
-      
-        <Link href="/" className="flex items-center gap-2 animate-pulse">
-          <ArrowLeft size={18} />
-          Back to Home
-        </Link>
-      </Button> */}
 
       <h1 className="text-3xl font-bold mb-6">Appointments</h1>
 
@@ -101,12 +97,6 @@ function AppointmentsPage() {
 
                   <td className="border p-3">{appointment.status}</td>
 
-                  {/* <td className="border p-3">
-                    <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
-                      Pending
-                    </span>
-                  </td> */}
-
                   <td className="border p-3">
                     <span
                       className={`px-3 py-1 rounded ${
@@ -122,14 +112,6 @@ function AppointmentsPage() {
                   </td>
 
                   <td className="border p-3">
-                    {/* <button className="bg-green-600 text-white px-3 py-1 rounded mr-2">
-                      Approve
-                    </button> */}
-
-                    {/* <button className="bg-red-600 text-white px-3 py-1 rounded">
-                      Cancel
-                    </button> */}
-
                     <button
                       onClick={() =>
                         handleStatusUpdate(appointment._id, "Approved")
