@@ -49,6 +49,39 @@ function AppointmentsPage() {
     }
   };
 
+const handleDelete = async (id) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this appointment?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const res = await fetch(
+      `http://localhost:5000/api/appointments/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error);
+    }
+
+    setAppointments((prev) =>
+      prev.filter((appointment) => appointment._id !== id)
+    );
+
+    toast.success("Appointment deleted!");
+
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
+
   return (
     <main className="p-10">
       <Button asChild className="mb-6">
@@ -129,6 +162,11 @@ function AppointmentsPage() {
                     >
                       Cancel
                     </button>
+
+                   <button onClick={()handleDelete(appointment._id)} 
+                   className="">
+                    Delete
+                   </button>
                   </td>
                 </tr>
               ))}
