@@ -31,7 +31,7 @@ const appointmentSchema = new mongoose.Schema(
       required: true,
     },
 
-    ststus: {
+    status: {
       type: String,
       enum: ["Pending", "Approved", "Cancelled"],
       default: "Pending",
@@ -48,4 +48,4 @@ const appointmentSchema = new mongoose.Schema(
   },
 );
 
-module.export = mongoose.model("Appointment", appointmentSchema);
+module.exports = mongoose.model("Appointment", appointmentSchema);
