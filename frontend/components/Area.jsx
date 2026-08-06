@@ -61,7 +61,7 @@ export default function Area() {
             <text x="300" y="95" fill="#C9D6CF" fontSize="11" textAnchor="middle">Southampton</text>
           </svg>
         </Reveal> */}
-        <Reveal className="bg-paper/[0.06] border border-paper/[0.16] rounded-3xl p-[34px]">
+        <Reveal className="bg-paper/[0.06] p-[34px]">
           <Map />
         </Reveal>
       </div>
