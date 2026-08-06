@@ -4,19 +4,12 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
-// delete L.Icon.Default.prototype._getIconUrl;
-const defaultIcon = L.icon({
-  iconUrl: icon.src,
-  shadowUrl: iconShadow.src,
-});
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "/marker-icon-2x.png",
-  iconUrl: "/marker-icon.png",
-  shadowUrl: "/marker-shadow.png",
+const icon = L.icon({
+  iconUrl: markerIcon.src,
+  shadowUrl: markerShadow.src,
 });
 
 export default function Map() {
@@ -24,14 +17,18 @@ export default function Map() {
     <MapContainer
       center={[40.7128, -74.006]}
       zoom={13}
-      style={{ height: "400px", width: "100%" }}
+      style={{
+        height: "300px",
+        width: "100%",
+        borderRadius: "12px",
+      }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
 
-      <Marker position={[40.7128, -74.006]} />
+      <Marker position={[40.7128, -74.006]} icon={icon} />
     </MapContainer>
   );
 }
