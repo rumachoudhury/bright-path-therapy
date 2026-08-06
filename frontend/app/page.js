@@ -8,6 +8,8 @@ import Area from "@/components/Area";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { services } from "@/lib/services";
+import NewPatientInfo from "@/components/NewPatientInfo";
+import IntakeForm from "@/components/IntakeForm";
 import FAQ from "@/components/FAQ";
 
 export default function Home() {
@@ -18,6 +20,8 @@ export default function Home() {
       <Signs />
       <About />
       <Services services={services} />
+      <NewPatientInfo />
+      <IntakeForm />
       <FAQ />
       <Area />
       {/* <Map /> */}
