@@ -1,6 +1,7 @@
 import { Fraunces, Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -27,26 +28,28 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>
-        {children}
+        <ThemeProvider>
+          {children}
 
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 3000,
-            success: {
-              style: {
-                background: "#16a34a",
-                color: "#fff",
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              success: {
+                style: {
+                  background: "#16a34a",
+                  color: "#fff",
+                },
               },
-            },
-            error: {
-              style: {
-                background: "#dc2626",
-                color: "#fff",
+              error: {
+                style: {
+                  background: "#dc2626",
+                  color: "#fff",
+                },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );
