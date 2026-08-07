@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Moon, Sun } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 const links = [
   { href: "#about", label: "About Us" },
@@ -15,8 +16,17 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
 
+  const { theme, setTheme } = useTheme();
+
   return (
-    <header>
+    <header
+      className="bg-white 
+border-b
+text-gray-900
+dark:bg-slate-900
+dark:text-white
+dark:border-slate-700"
+    >
       <nav className="flex items-center justify-between px-8 py-5">
         {/* Logo */}
         <Link
@@ -168,6 +178,16 @@ export default function Nav() {
           >
             Schedule a Visit
           </Link>
+
+          <div>
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-md"
+            >
+              <Sun className="dark:hidden" />
+              <Moon className="hidden dark:block" />
+            </button>
+          </div>
         </div>
       )}
     </header>

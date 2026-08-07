@@ -14,7 +14,7 @@ import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
-    <>
+    <main className="main-h-screen bg-white text-gray-900 dark:bg-slate-950 dark:text-white">
       <Nav />
       <Hero />
       <Signs />
@@ -27,6 +27,6 @@ export default function Home() {
       {/* <Map /> */}
       <Contact />
       <Footer />
-    </>
+    </main>
   );
 }
