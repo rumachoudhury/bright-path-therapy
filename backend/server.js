@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const contactRoutes = require("./routes/contactRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
+const intakeRoutes = require("./routes/intakeRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/contact", contactRoutes);
 app.use("/api/appointments", appointmentRoutes);
+app.use("/api/intake", intakeRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
