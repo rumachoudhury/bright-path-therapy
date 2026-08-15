@@ -25,7 +25,7 @@ border-b
 text-gray-900
 dark:bg-slate-900
 dark:text-white
-dark:border-slate-700"
+dark:border-slate-700   transition-colors"
     >
       <nav className="flex items-center justify-between px-8 py-5">
         {/* Logo */}
@@ -60,7 +60,8 @@ dark:border-slate-700"
             <Link
               key={link.href}
               href={link.href}
-              className="text-ink-soft hover:text-coral-deep transition-colors"
+              // className="text-ink-soft hover:text-coral-deep transition-colors"
+              className="text-ink-soft dark:text-gray-300 hover:text-coral-deep dark:hover:text-white transition-colors"
             >
               {link.label}
             </Link>
@@ -77,11 +78,15 @@ dark:border-slate-700"
             </button>
 
             {adminOpen && (
-              <div className="absolute right-0 top-8 w-48 bg-white border rounded-lg shadow-lg z-50">
+              <div
+                // className="absolute right-0 top-8 w-48 bg-white border rounded-lg shadow-lg z-50"
+                className="absolute right-0 top-8 w-48 bg-white dark:bg-gray-900 border border-line dark:border-gray-700 rounded-lg shadow-lg z-50"
+              >
                 <Link
                   href="/admin"
                   onClick={() => setAdminOpen(false)}
-                  className="block px-4 py-3 hover:bg-gray-100"
+                  // className="block px-4 py-3 hover:bg-gray-100"
+                  className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200"
                 >
                   Dashboard
                 </Link>
@@ -130,7 +135,10 @@ dark:border-slate-700"
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden flex flex-col gap-5 px-8 py-6 border-t border-line bg-paper">
+        <div
+          // className="md:hidden flex flex-col gap-5 px-8 py-6 border-t border-line bg-paper"
+          className="md:hidden flex flex-col gap-5 px-8 py-6 border-t border-line bg-paper dark:bg-gray-900 transition-colors"
+        >
           {links.map((link) => (
             <Link
               key={link.href}
