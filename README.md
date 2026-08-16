@@ -36,7 +36,7 @@ The project also includes an admin dashboard for managing contact and appointmen
 
 ## 🛠️ Tech Stack
 
-**Frontend**
+### Frontend
 
 - Next.js
 - React
@@ -47,7 +47,7 @@ The project also includes an admin dashboard for managing contact and appointmen
 - Lucide React
 - React Hot Toast
 
-**Backend**
+### Backend
 
 - Node.js
 - Express.js
@@ -55,4 +55,59 @@ The project also includes an admin dashboard for managing contact and appointmen
 - Mongoose
 - CORS
 - dotenv
+
+---
+
+## 🚀 Getting Started
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+
+Runs the Next.js application at:
+
+http://localhost:3000
+Backend
+
+Open a second terminal:
+
+cd backend
+npm install
+npm run dev
+
+Runs the Express API at: http://localhost:5000
+
+Environment Variables
+
+Create a .env file inside backend/:
+
+MONGO_URI=your_mongodb_connection_string
+PORT=5000
+🔄 Application Flow
+Visitor
+   ↓
+Contact / Appointment / Intake Form
+   ↓
+Express API
+   ↓
+MongoDB
+   ↓
+Admin Dashboard
+🧪 Testing
+
+Before deployment, verify:
+
+ Contact form works
+ Appointment form works
+ Intake form works
+ MongoDB saves submissions
+ Admin dashboard works
+ Map loads correctly
+ Dark mode works
+ Mobile layout works
+
+
 
