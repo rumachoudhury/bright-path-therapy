@@ -110,7 +110,6 @@ export default function AdminContacts() {
 
       toast.success("Contact deleted!");
     } catch (error) {
-      //   alert(error.message);
       toast.error(error.message);
     }
   };
@@ -164,10 +163,8 @@ export default function AdminContacts() {
 
       setEditingContact(null);
 
-      //   alert("Contact updated!");
       toast.success("Contact updated!");
     } catch (error) {
-      //   alert(err.message);
       toast.error(err.message);
     }
   };
