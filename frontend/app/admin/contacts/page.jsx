@@ -270,7 +270,6 @@ export default function AdminContacts() {
 
                   <td className="border p-3">{contact.phone || "-"}</td>
 
-                  {/* <td className="border p-3 max-w-xs">{contact.message}</td> */}
                   <td className="border p-3 max-w-xs break-words">
                     {contact.message}
                   </td>
