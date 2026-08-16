@@ -108,6 +108,5 @@ Before deployment, verify:
  Map loads correctly
  Dark mode works
  Mobile layout works
-
-
+----
 
