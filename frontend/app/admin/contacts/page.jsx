@@ -24,13 +24,6 @@ export default function AdminContacts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  // Filter contacts
-  // const filteredContacts = contacts.filter(
-  //   (contact) =>
-  //     contact.name.toLowerCase().includes(search.toLowerCase()) ||
-  //     contact.email.toLowerCase().includes(search.toLowerCase()) ||
-  //     contact.message.toLowerCase().includes(search.toLowerCase()),
-  // );
   const filteredContacts = contacts
     .filter(
       (contact) =>
@@ -62,7 +55,7 @@ export default function AdminContacts() {
     fetch("http://localhost:5000/api/contact")
       .then((res) => res.json())
       .then((data) => {
-        setContacts(data.data);
+        setContacts(Array.isArray(data.data) ? data.data : []);
         setLoading(false);
       })
       .catch((err) => {
