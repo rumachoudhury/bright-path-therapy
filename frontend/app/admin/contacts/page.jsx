@@ -24,13 +24,37 @@ export default function AdminContacts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
+  // const filteredContacts = contacts
+  //   .filter(
+  //     (contact) =>
+  //       contact.name.toLowerCase().includes(search.toLowerCase()) ||
+  //       contact.email.toLowerCase().includes(search.toLowerCase()) ||
+  //       contact.message.toLowerCase().includes(search.toLowerCase()),
+  //   )
+  //   .sort((a, b) => {
+  //     const dateA = new Date(a.createdAt);
+  //     const dateB = new Date(b.createdAt);
+
+  //     if (sortOrder === "newest") {
+  //       return dateB - dateA;
+  //     }
+
+  //     return dateA - dateB;
+  //   });
+
   const filteredContacts = contacts
-    .filter(
-      (contact) =>
-        contact.name.toLowerCase().includes(search.toLowerCase()) ||
-        contact.email.toLowerCase().includes(search.toLowerCase()) ||
-        contact.message.toLowerCase().includes(search.toLowerCase()),
-    )
+    .filter((contact) => {
+      const name = contact.name?.toLowerCase() || "";
+      const email = contact.email?.toLowerCase() || "";
+      const message = contact.message?.toLowerCase() || "";
+      const searchText = search.toLowerCase();
+
+      return (
+        name.includes(searchText) ||
+        email.includes(searchText) ||
+        message.includes(searchText)
+      );
+    })
     .sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
@@ -41,6 +65,7 @@ export default function AdminContacts() {
 
       return dateA - dateB;
     });
+
   // Pagination (PUT HERE)
   const contactsPerPage = 2;
 
