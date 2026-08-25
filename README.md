@@ -106,6 +106,8 @@ Before deployment, verify:
 ----
 deployed:
 Frontend: https://bright-path-therapy.vercel.app
+
 Backend: https://bright-path-therapy-7q44.vercel.app
+
 MongoDB: connected through Vercel's MONGO_URI
 ----
