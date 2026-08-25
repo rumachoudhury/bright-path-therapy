@@ -66,26 +66,21 @@ The project also includes an admin dashboard for managing contact and appointmen
 cd frontend
 npm install
 npm run dev
-
 Runs the Next.js application at:
-
 http://localhost:3000
+
 Backend
-
 Open a second terminal:
-
 cd backend
 npm install
 npm run dev
-
 Runs the Express API at: http://localhost:5000
 
 Environment Variables
-
 Create a .env file inside backend/:
-
 MONGO_URI=your_mongodb_connection_string
 PORT=5000
+--------------------------------------------
 🔄 Application Flow
 Visitor
    ↓
@@ -109,4 +104,8 @@ Before deployment, verify:
  Dark mode works
  Mobile layout works
 ----
-
+deployed:
+Frontend: https://bright-path-therapy.vercel.app
+Backend: https://bright-path-therapy-7q44.vercel.app
+MongoDB: connected through Vercel's MONGO_URI
+----
