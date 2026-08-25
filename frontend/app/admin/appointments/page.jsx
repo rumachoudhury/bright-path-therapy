@@ -10,7 +10,8 @@ function AppointmentsPage() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/appointments")
+    // fetch("http://localhost:5000/api/appointments")
+    fetch("https://bright-path-therapy-7q44.vercel.app/api/appointments")
       .then((res) => res.json())
       .then((data) => {
         setAppointments(data.data);
@@ -20,7 +21,8 @@ function AppointmentsPage() {
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/appointments/${id}`, {
+      // const res = await fetch(`http://localhost:5000/api/appointments/${id}`, { 
+      fetch(`https://bright-path-therapy-7q44.vercel.app/api/appointments/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +59,10 @@ function AppointmentsPage() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/appointments/${id}`, {
+      // const res = await fetch(`http://localhost:5000/api/appointments/${id}`, {
+        const res = await fetch(
+    `https://bright-path-therapy-7q44.vercel.app/api/appointments/${id}`,
+    {
         method: "DELETE",
       });
 

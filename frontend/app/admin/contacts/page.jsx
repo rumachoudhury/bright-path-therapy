@@ -76,8 +76,10 @@ export default function AdminContacts() {
 
   const totalPages = Math.ceil(filteredContacts.length / contactsPerPage);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/contact")
   useEffect(() => {
-    fetch("http://localhost:5000/api/contact")
+  fetch("https://bright-path-therapy-7q44.vercel.app/api/contact")
       .then((res) => res.json())
       .then((data) => {
         setContacts(Array.isArray(data.data) ? data.data : []);
@@ -98,7 +100,10 @@ export default function AdminContacts() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      // const res = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const res = await fetch(
+  `https://bright-path-therapy-7q44.vercel.app/api/contact/${id}`,
+  {
         method: "DELETE",
       });
 
@@ -138,9 +143,12 @@ export default function AdminContacts() {
   //   Add the Save function
   const handleUpdate = async () => {
     try {
+      // const res = await fetch(
+      //   `http://localhost:5000/api/contact/${editingContact._id}`,
+      //   {
       const res = await fetch(
-        `http://localhost:5000/api/contact/${editingContact._id}`,
-        {
+  `https://bright-path-therapy-7q44.vercel.app/api/contact/${editingContact._id}`,
+  {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

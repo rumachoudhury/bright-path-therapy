@@ -32,7 +32,10 @@ export default function AppointmentForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/appointments", {
+      // const res = await fetch("http://localhost:5000/api/appointments", {
+        const res = await fetch(
+    "https://bright-path-therapy-7q44.vercel.app/api/appointments",
+    {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
